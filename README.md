@@ -1,2 +1,2 @@
 # surpresanamorados
-Repositório para o site para uma surpresa pro meu namorado.
+Repositório do site para uma surpresa pro meu namorado.
