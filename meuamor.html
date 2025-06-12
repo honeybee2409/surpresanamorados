@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para o Meu Amor ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #f7e9ff, #e9f0ff);
+            color: #444;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .heart {
+            position: fixed;
+            font-size: 1.5em;
+            color: #FF69B4;
+            pointer-events: none;
+            animation: floatUp 6s ease-in-out forwards;
+            opacity: 0;
+            z-index: -1;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+                transform: translateY(-20px) scale(0.5);
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        header {
+            background-color: #A349A4;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5em;
+            margin: 0;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .top-section {
+            background-color: rgba(255, 255, 255, 0.9);
+            width: 90%;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            z-index: 1;
+            position: relative;
+        }
+
+        .main-content-container {
+            flex-grow: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 20px;
+            border-radius: 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            gap: 20px;
+            border-left: 1px solid rgba(255, 255, 255, 0.5);
+            border-right: 1px solid rgba(255, 255, 255, 0.5);
+            z-index: 1;
+            position: relative;
+        }
+
+        h2 {
+            font-family: 'Dancing Script', cursive;
+            color: #C36894;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.2em;
+            width: 100%;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 1em;
+        }
+
+        .highlight {
+            color: #E74C3C;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-shadow: 0 0 3px rgba(231, 76, 60, 0.3);
+        }
+
+        #days-count, #hours-count, #minutes-count, #seconds-count {
+            font-size: 2em;
+            color: #D32F2F;
+            font-weight: 700;
+        }
+
+        .gallery-section, .message-section, .discover-more-section {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(230, 230, 250, 0.7);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .hidden-message {
+            display: inline-block;
+            background-color: rgba(255, 220, 230, 0.6);
+            color: rgba(255, 255, 255, 0);
+            transition: color 0.5s ease, background-color 0.5s ease;
+            padding: 2px 8px;
+            border-radius: 5px;
+            cursor: help;
+        }
+
+        .hidden-message:hover {
+            color: #A349A4;
+            background-color: rgba(255, 220, 230, 1);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .gallery a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+            filter: brightness(0.98);
+        }
+
+        .gallery a:hover img {
+            transform: scale(1.05);
+            filter: brightness(1.02);
+        }
+
+        textarea {
+            width: calc(100% - 20px);
+            min-height: 120px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            margin-top: 15px;
+            box-sizing: border-box;
+            resize: vertical;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        textarea:focus {
+            border-color: #C36894;
+            box-shadow: 0 0 5px rgba(195, 104, 148, 0.3);
+            outline: none;
+        }
+
+        .discover-more-section {
+            background-color: #ffffff;
+            width: 100%;
+            margin-top: 20px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            border: 1px solid rgba(230, 230, 250, 0.7);
+        }
+
+        .discover-more-section p {
+            color: #555;
+            font-size: 1.05em;
+            margin-bottom: 25px;
+        }
+
+        .links-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .special-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 25px;
+            background-color: #C36894;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(195, 104, 148, 0.4);
+            min-width: 150px;
+            letter-spacing: 0.3px;
+        }
+
+        .special-button:hover {
+            background-color: #B25A80;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(195, 104, 148, 0.6);
+        }
+
+        .special-button:active {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(195, 104, 148, 0.4);
+        }
+
+        footer {
+            background-color: #d4c1e6;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            padding: 15px;
+            margin-top: auto;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 992px) {
+            .gallery-section, .message-section {
+                min-width: unset;
+                flex: 1 1 100%;
+            }
+            .main-content-container {
+                padding: 15px;
+                border-left: none;
+                border-right: none;
+                border-radius: 0;
+            }
+            h2 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 0.95em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+            .top-section, .main-content-container {
+                width: 95%;
+                padding: 20px;
+                border-radius: 10px 10px 0 0;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+                gap: 10px;
+            }
+            .gallery img {
+                height: 80px;
+            }
+            .special-button {
+                font-size: 0.95em;
+                padding: 10px 20px;
+                min-width: unset;
+                width: 100%;
+            }
+            .discover-more-section {
+                padding: 20px;
+                border-radius: 0 0 10px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2em;
+            }
+            .top-section, .main-content-container, .discover-more-section {
+                padding: 15px;
+                border-radius: 8px 8px 0 0;
+            }
+            p {
+                font-size: 0.9em;
+            }
+            /* ATUALIZAÇÃO AQUI: Adicionado #seconds-count ao seletor */
+            #days-count, #hours-count, #minutes-count, #seconds-count {
+                font-size: 1.6em;
+            }
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+                gap: 8px;
+            }
+            .gallery img {
+                height: 60px;
+            }
+            .discover-more-section {
+                border-radius: 0 0 8px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Para o Meu Amor ❤️</h1>
+    </header>
+
+    <div class="top-section">
+        <h2>Nosso Tempo Juntos</h2>
+        <p>
+            Nossa história começou no dia <span class="highlight">12 de março de 2025</span>.
+            E no dia <span class="highlight">12 de maio de 2025</span>, oficializamos e deixamos claro nosso compromisso um com o outro! Pode-se dizer que o <span class="highlight">12</span> é nosso número da sorte.
+        </p>
+        <p>
+            Desde <span class="highlight">12/03/2025</span> até o momento em que você está vendo este site, nós já vivemos:
+        </p>
+        <p>
+            <span class="highlight" id="days-count"></span> dias completos,<br>
+            <span class="highlight" id="hours-count"></span> horas, <span class="highlight" id="minutes-count"></span> minutos e <span class="highlight" id="seconds-count"></span> segundos de um amor incrível!
+        </p>
+    </div>
+
+    <div class="main-content-container">
+        <div class="message-section">
+            <h2>Uma Mensagem do Coração</h2>
+            <p>Meu amor, preparei este cantinho especial para você, uma pequena amostra do universo que construímos juntos. É um espaço para celebrar cada risada, cada abraço apertado e cada momento que se tornou uma memória preciosa em nossa jornada. Desde o dia em que nossos olhares se cruzaram, minha vida ganhou uma cor e um significado que eu nem sabia que faltavam.</p>
+            <p>Quero que saiba o quanto eu te amo, com uma intensidade que transcende as palavras, e o quanto sou imensamente feliz ao seu lado. Cada dia com você é uma dádiva, uma aventura inesperada e um sorriso que ilumina até os meus dias mais cinzentos. Sua presença não apenas me completa, mas me inspira a ser uma pessoa melhor, a enxergar a beleza nas pequenas coisas e a acreditar que o amor verdadeiro é a força mais poderosa que existe.</p>
+            <p>Você se tornou meu porto seguro, o refúgio onde encontro paz em meio a qualquer turbulência. É o meu ponto de conforto, a certeza de que, estando perto ou longe, há sempre um laço inquebrável que nos une. Obrigada por ser quem você é - essa pessoa incrível, com um coração gigante e um senso de humor que me desarma. Obrigada por me amar da forma mais linda, genuína e incondicional que existe.
+                <span class="hidden-message">Psst! Tenho um segredo, e prometo que é o mais lindo de todos: você é o melhor namorado do mundo e faz meus dias valerem a pena!</span> Estarei sempre aqui para você, em cada passo da nossa jornada, em cada desafio que enfrentarmos e em cada nova descoberta. Conte comigo para tudo, para as maiores alegrias e para os momentos em que precisar de um ombro amigo.</p>
+            <p>PS: Cada momento que vivemos, cada olhar, cada toque, fará parte dos 3 minutos mais preciosos após minha morte. E não conta pra ninguém, mas eu gosto muito, muito de você, é segredo, hein.</p>
+            <p>Com todo o meu carinho,<br>Mel Isis</p>
+        </div>
+
+        <div class="gallery-section">
+            <h2>Nossas Memórias</h2>
+            <p>Clique em cada foto para ver a descrição do momento!</p>
+            <div class="gallery">
+                <a href="foto01.html"><img src="foto0102.jpg" alt="Momento especial 1"></a>
+                <a href="foto02.html"><img src="foto0202.jpg" alt="Momento especial 2"></a>
+                <a href="foto03.html"><img src="foto0302.jpg" alt="Momento especial 3"></a>
+                <a href="foto04.html"><img src="foto0402.jpg" alt="Momento especial 4"></a>
+                <a href="foto05.html"><img src="foto0502.jpg" alt="Momento especial 5"></a>
+                <a href="foto06.html"><img src="foto0602.jpg" alt="Momento especial 6"></a>
+                <a href="foto07.html"><img src="foto0702.jpg" alt="Momento especial 7"></a>
+                <a href="foto08.html"><img src="foto0802.jpg" alt="Momento especial 8"></a>
+                <a href="foto09.html"><img src="foto0902.jpg" alt="Momento especial 9"></a>
+                <a href="foto10.html"><img src="foto1002.jpg" alt="Momento especial 10"></a>
+                <a href="foto11.html"><img src="foto1102.jpg" alt="Momento especial 11"></a>
+                <a href="foto12.html"><img src="foto1202.jpg" alt="Momento especial 12"></a>
+                <a href="foto13.html"><img src="foto1302.jpg" alt="Momento especial 13"></a>
+                <a href="foto14.html"><img src="foto1402.jpg" alt="Momento especial 14"></a>
+                <a href="foto15.html"><img src="foto1502.jpg" alt="Momento especial 15"></a>
+                <a href="foto16.html"><img src="foto1602.jpg" alt="Momento especial 16"></a>
+                <a href="foto17.html"><img src="foto1702.jpg" alt="Momento especial 17"></a>
+                <a href="foto18.html"><img src="foto1802.jpg" alt="Momento especial 18"></a>
+                <a href="foto19.html"><img src="foto1902.jpg" alt="Momento especial 19"></a>
+                <a href="foto20.html"><img src="foto2002.jpg" alt="Momento especial 20"></a>
+            </div>
+        </div>
+
+        <div class="discover-more-section">
+            <h2>Descubra Mais Sobre Nós! ✨</h2>
+            <p>Ainda temos muitas histórias e risadas para compartilhar.</p>
+            <div class="links-container">
+                <a href="lugares.html" class="special-button">Nossos Lugares Especiais ❤️</a>
+                <a href="piadas.html" class="special-button">Nossas Piadas e Memes ❤️</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Feito com muito amor para você! ❤️</p>
+    </footer>
+
+    <script>
+        function updateTime() {
+            const startDate = new Date('2025-03-12T00:00:00');
+            const now = new Date();
+            const diffMs = now - startDate;
+
+            const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+            const diffHoursMs = diffMs % (1000 * 60 * 60 * 24);
+            const hours = Math.floor(diffHoursMs / (1000 * 60 * 60));
+            const diffMinutesMs = diffHoursMs % (1000 * 60 * 60);
+            const minutes = Math.floor(diffMinutesMs / (1000 * 60));
+            const diffSecondsMs = diffMinutesMs % (1000 * 60);
+            const seconds = Math.floor(diffSecondsMs / 1000);
+
+            document.getElementById('days-count').textContent = days;
+            document.getElementById('hours-count').textContent = hours;
+            document.getElementById('minutes-count').textContent = minutes;
+            document.getElementById('seconds-count').textContent = seconds;
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000); // Atualiza a cada 1 segundo
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.textContent = '💜' ;
+
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.bottom = '-10px';
+
+            heart.style.fontSize = Math.random() * 1.5 + 1 + 'em';
+
+            heart.style.animationDuration = Math.random() * 4 + 4 + 's';
+
+            heart.style.animationDelay = Math.random() * 3 + 's';
+
+            document.body.appendChild(heart);
+
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+            });
+        }
+
+        setInterval(createHeart, 800);
+    </script>
+</body>
+</html>
